@@ -1,0 +1,391 @@
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  color: #f1f1ee;
+  background: #050505;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(215, 217, 220, 0.08), transparent 30rem),
+    radial-gradient(circle at 90% 20%, rgba(200, 184, 138, 0.07), transparent 28rem),
+    #050505;
+  color: #f1f1ee;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.cinema-field {
+  position: absolute;
+  inset: -20%;
+  background:
+    linear-gradient(115deg, transparent 0 35%, rgba(215, 217, 220, 0.08) 43%, transparent 52%),
+    radial-gradient(circle at 72% 46%, rgba(215, 217, 220, 0.14), transparent 18rem),
+    radial-gradient(circle at 30% 70%, rgba(200, 184, 138, 0.1), transparent 20rem),
+    #050505;
+  filter: saturate(0.95);
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+.cinema-field::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at center, black, transparent 70%);
+}
+
+.scanline {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.02), transparent);
+  background-size: 100% 7px;
+  opacity: 0.4;
+  mix-blend-mode: screen;
+}
+
+.portrait-frame {
+  position: relative;
+  min-height: 620px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), transparent 44%),
+    radial-gradient(circle at 50% 20%, rgba(215, 217, 220, 0.16), transparent 18rem),
+    #08080a;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+  overflow: hidden;
+}
+
+.portrait-frame::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.portrait-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--portrait-image, none);
+  background-position: center;
+  background-size: cover;
+  opacity: 0;
+}
+
+.portrait-photo {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  filter: grayscale(0.25) contrast(1.08);
+}
+
+.portrait-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 14px;
+  padding: 32px;
+  text-align: center;
+  color: #d7d9dc;
+}
+
+.portrait-placeholder span {
+  font-family: "Bodoni Moda", serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.9;
+}
+
+.portrait-placeholder small {
+  color: #8d9298;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.service-glow {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  height: 26rem;
+  width: min(70rem, 92vw);
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(215, 217, 220, 0.12), transparent 64%);
+  filter: blur(24px);
+}
+
+.service-card {
+  position: relative;
+  min-height: 220px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.025));
+  padding: 30px;
+  backdrop-filter: blur(22px);
+  transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(200, 184, 138, 0.55);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.035));
+}
+
+.filter-pill {
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.035);
+  color: #bfc3c7;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.68rem;
+  transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.filter-pill:hover,
+.filter-pill.is-active {
+  border-color: rgba(200, 184, 138, 0.72);
+  background: rgba(200, 184, 138, 0.1);
+  color: #f1f1ee;
+  transform: translateY(-2px);
+}
+
+.gallery-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(circle at 50% 36%, rgba(215, 217, 220, 0.09), transparent 22rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015)),
+    #050505;
+  isolation: isolate;
+  transition: border-color 0.35s ease, transform 0.35s ease, background 0.35s ease;
+}
+
+.gallery-card.poster {
+  grid-row: span 2;
+}
+
+.artwork-stage {
+  position: absolute;
+  inset: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(14px, 1.5vw, 24px);
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.055), transparent 18rem),
+    rgba(255, 255, 255, 0.018);
+}
+
+.featured-stage {
+  padding: 0;
+}
+
+.artwork-image {
+  height: 100%;
+  width: 100%;
+  transition: transform 0.75s ease, filter 0.75s ease, opacity 0.75s ease;
+}
+
+.artwork-image.is-contain {
+  object-fit: contain;
+}
+
+.artwork-image.is-cover {
+  object-fit: cover;
+}
+
+.gallery-card:hover .artwork-image {
+  transform: scale(1.025);
+  filter: saturate(1.05) contrast(1.03);
+}
+
+.gallery-card:hover {
+  border-color: rgba(200, 184, 138, 0.38);
+  transform: translateY(-4px);
+}
+
+.card-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.28), transparent 28%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.62) 30%, rgba(0, 0, 0, 0.18) 62%, rgba(0, 0, 0, 0.34)),
+    radial-gradient(circle at 50% 45%, transparent 30%, rgba(0, 0, 0, 0.52) 100%);
+  pointer-events: none;
+}
+
+.card-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(115deg, transparent 0 52%, rgba(255, 255, 255, 0.08) 64%, transparent 76%);
+  opacity: 0;
+  transform: translateX(-18%);
+  transition: opacity 0.45s ease, transform 0.65s ease;
+  pointer-events: none;
+}
+
+.gallery-card:hover .card-shine {
+  opacity: 1;
+  transform: translateX(10%);
+}
+
+.card-caption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 3;
+  display: flex;
+  min-height: 128px;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 26px;
+  text-align: left;
+}
+
+.card-kicker {
+  width: fit-content;
+  border: 1px solid rgba(200, 184, 138, 0.22);
+  background: rgba(0, 0, 0, 0.42);
+  color: #c8b88a;
+  padding: 7px 9px;
+  font-size: 0.56rem;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}
+
+.card-title {
+  margin-top: 13px;
+  max-width: 92%;
+  color: #f1f1ee;
+  font-family: "Bodoni Moda", "Cormorant Garamond", serif;
+  font-size: clamp(1.45rem, 2vw, 2.15rem);
+  font-weight: 500;
+  line-height: 1.02;
+  text-wrap: balance;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.78);
+}
+
+.preview-panel {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(215, 217, 220, 0.08), transparent 28rem),
+    #08080a;
+}
+
+.preview-image-stage {
+  display: flex;
+  min-height: 0;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.055), transparent 42%),
+    #030303;
+  padding: clamp(14px, 2.4vw, 34px);
+}
+
+.preview-image {
+  display: block;
+  max-height: min(72vh, 820px);
+  max-width: 100%;
+  height: auto;
+  width: auto;
+  object-fit: contain;
+}
+
+.contact-link {
+  display: inline-flex;
+  min-width: 172px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 16px 20px;
+  color: #f1f1ee;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.7rem;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+.contact-link:hover {
+  transform: translateY(-3px);
+  border-color: rgba(200, 184, 138, 0.65);
+  background: rgba(200, 184, 138, 0.08);
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2%, 1%, 0) scale(1.04);
+  }
+}
+
+@media (max-width: 767px) {
+  .portrait-frame {
+    min-height: 460px;
+  }
+
+  .contact-link {
+    width: 100%;
+  }
+
+  .gallery-card.poster,
+  .gallery-card.wide,
+  .gallery-card.landscape {
+    grid-row: span 1;
+  }
+
+  .gallery-card {
+    min-height: 360px;
+  }
+
+  .artwork-stage {
+    padding: 14px;
+  }
+
+  .card-caption {
+    min-height: 118px;
+    padding: 22px;
+  }
+
+  .card-title {
+    max-width: 100%;
+    font-size: 1.7rem;
+  }
+
+  .preview-image {
+    max-height: 58vh;
+  }
+}
