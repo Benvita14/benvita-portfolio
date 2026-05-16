@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "dev": "node server.js 5175",
+    "build": "node build.js",
+    "preview": "node server.js 5175"
+  }
+}
