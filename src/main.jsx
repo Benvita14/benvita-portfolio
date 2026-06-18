@@ -1,4 +1,4 @@
-/** @jsxRuntime classic */
+
 const { useState } = React;
 const { createRoot } = ReactDOM;
 const { AnimatePresence, motion, useScroll, useTransform } = Motion;
