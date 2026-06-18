@@ -1,8 +1,7 @@
-
-const { useState } = React;
-const { createRoot } = ReactDOM;
-const { AnimatePresence, motion, useScroll, useTransform } = Motion;
-
+import React, { useState } from "react";
+import { createRoot } from "react-dom/client";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import "./styles.css";
 function Icon({ name, className = "h-4 w-4" }) {
   const common = {
     className,
